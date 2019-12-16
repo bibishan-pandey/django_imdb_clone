@@ -12,4 +12,5 @@ class MovieList(ListView):
 class MovieDetail(DetailView):
     model = Movie
     template_name = 'movie/movie_detail.html'
+    context_object_name = 'movie'
 
