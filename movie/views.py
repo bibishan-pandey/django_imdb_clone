@@ -1,6 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
+from .models import Movie
 
 
-def home(request):
-    return HttpResponse("<h1>Movies Home Successfully Loaded!</h1>")
+class MovieList(ListView):
+    model = Movie
+    template_name = 'movie/movie_list.html'
+    context_object_name = 'movies'
+
+
+class MovieDetail(DetailView):
+    model = Movie
+    template_name = 'movie/movie_detail.html'
+
