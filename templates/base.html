@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IMDB</title>
+    <!-- Link Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <figure class="logo"><a href="#"><img src="{% static 'images/logo.png' %}" alt="Logo"></a></figure>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a>Genres</a>
+                    <ul>
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Comedy</a></li>
+                        <li><a href="#">Drama</a></li>
+                        <li><a href="#">Romance</a></li>
+                    </ul>
+                </li>
+                <li><a>Year</a>
+                    <ul>
+                        <li><a href="#">2017</a></li>
+                        <li><a href="#">2016</a></li>
+                        <li><a href="#">2015</a></li>
+                        <li><a href="#">2014</a></li>
+                    </ul>
+                </li>
+                <li><a>Language</a>
+                    <ul>
+                        <li><a href="#">English</a></li>
+                        <li><a href="#">German</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Most Watched</a></li>
+                <li class="mobsearch">
+                    <form class="mobform">
+                        <label>
+                            <input type="text" name="s" class="mobsearchfield" placeholder="Search...">
+                        </label>
+                        <input type="submit" value="" class="mobsearchsubmit">
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <form class="search">
+            <label>
+                <input type="text" name="s" class="searchfield" placeholder="Search...">
+            </label>
+            <input type="submit" value="" class="searchsubmit">
+        </form>
+        <div class="toggle"><img src="{% static 'images/menu.svg' %}" alt="Menu"></div>
+    </header>
+    <!-- Swiper -->
+    <div class="homeslider">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="{% static 'images/slider/poster2.jpg' %}" alt="slider">
+                    <div class="caption">
+                        <div class="captioninside">
+                            <h3>Movie Title</h3>
+                            <p>Lorem ipsum dolor siamet</p>
+                            <a href="#" class="playbutton">Play</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'images/slider/poster1.jpg' %}" alt="slider">
+                    <div class="caption">
+                        <div class="captioninside">
+                            <h3>Movie Title 2</h3>
+                            <p>Lorem ipsum dolor siamet</p>
+                            <a href="#" class="playbutton">Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock content %}
+    <!-- Swiper JS -->
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        $(document).ready(function () {
+            var swiper = new Swiper('.homeslider > .swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                effect: 'fade',
+                breakpoints: {
+                    320: {
+                        height: 200
+                    },
+                    480: {
+                        height: 300
+                    },
+                    768: {
+                        height: 400
+                    },
+                    1024: {
+                        height: 500
+                    }
+                }
+            });
+            var recentswiper = new Swiper('.recentslider > .swiper-container', {
+                nextButton: '.recent-next',
+                prevButton: '.recent-prev',
+                slidesPerView: 8,
+                paginationClickable: true,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                spaceBetween: 10,
+                breakpoints: {
+                    320: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    768: {
+                        slidesPerView: 5,
+                        spaceBetween: 5
+                    },
+                    1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10
+                    }
+                }
+            });
+            var mostswiper = new Swiper('.mostslider > .swiper-container', {
+                nextButton: '.most-next',
+                prevButton: '.most-prev',
+                slidesPerView: 8,
+                paginationClickable: true,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                spaceBetween: 10,
+                breakpoints: {
+                    320: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    768: {
+                        slidesPerView: 5,
+                        spaceBetween: 5
+                    },
+                    1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10
+                    }
+                }
+            });
+            var topswiper = new Swiper('.topslider > .swiper-container', {
+                nextButton: '.top-next',
+                prevButton: '.top-prev',
+                slidesPerView: 8,
+                paginationClickable: true,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                spaceBetween: 10,
+                breakpoints: {
+                    320: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 5
+                    },
+                    768: {
+                        slidesPerView: 5,
+                        spaceBetween: 5
+                    },
+                    1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10
+                    }
+                }
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
