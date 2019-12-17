@@ -8,7 +8,7 @@
                 <div class="movies">
                     {% for movie in movies %}
                         <div class="mov">
-                            <a href="{% url 'detail' movie.id %}">
+                            <a href="{% url 'detail' movie.slug %}">
                                 <img width="180px" height="250px" src="{{ movie.image.url }}" alt="{{ movie.title }}">
                                 <h2 class="movietitle">{{ movie.title }}</h2>
                             </a>
