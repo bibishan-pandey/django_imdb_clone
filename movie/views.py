@@ -31,6 +31,7 @@ class MovieDetail(DetailView):
 
     @staticmethod
     def strip_url(links):
+        embedded_url = None
         for link in links:
             if link['link_type'] == 'T':
                 stripped_url_list = link['link'].split('/')
