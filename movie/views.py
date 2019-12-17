@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
 from .models import Movie, MovieLink
 
 
@@ -46,6 +46,10 @@ class MovieCategory(ListView):
     template_name = 'movie/movie_category.html'
     context_object_name = 'movies'
     paginate_by = 5
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.category = None
 
     def get_queryset(self):
         self.category = self.kwargs.get('category')
