@@ -4,12 +4,12 @@
     <main class="content" style="padding-bottom: 20px !important;">
         <section class="centered">
             {% if category %}
-                <h3>{{ category }}</h3>
+                <h3>{{ category }} Movies</h3>
                 <div class="movies">
                     {% for movie in movies %}
                         <div class="mov">
                             <a href="{% url 'detail' movie.id %}">
-                                <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                                <img width="180px" height="250px" src="{{ movie.image.url }}" alt="{{ movie.title }}">
                                 <h2 class="movietitle">{{ movie.title }}</h2>
                             </a>
                         </div>

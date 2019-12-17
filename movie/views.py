@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView
 
 from .models import Movie, MovieLink
+import json
 
 
 class MovieList(ListView):
@@ -41,7 +42,7 @@ class MovieDetail(DetailView):
         return embedded_url
 
 
-class MovieCategory(ListView):
+class GenreCategory(ListView):
     model = Movie
     template_name = 'movie/movie_category.html'
     context_object_name = 'movies'
@@ -57,7 +58,7 @@ class MovieCategory(ListView):
         return movies
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(MovieCategory, self).get_context_data(**kwargs)
+        context = super(GenreCategory, self).get_context_data(**kwargs)
 
         # sending full category name in the context
         if self.category == 'A':
@@ -70,3 +71,28 @@ class MovieCategory(ListView):
             context['category'] = 'Romance'
         return context
 
+
+class LanguageCategory(ListView):
+    model = Movie
+    template_name = 'movie/movie_category.html'
+    context_object_name = 'movies'
+    paginate_by = 5
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.category = None
+
+    def get_queryset(self):
+        self.category = self.kwargs.get('category')  # currently works with only category field
+        movies = Movie.objects.filter(language=self.category)
+        print(self.category)
+        print(list(movies))
+        return movies
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(LanguageCategory, self).get_context_data(**kwargs)
+        if self.category == 'EN':
+            context['category'] = 'English'
+        elif self.category == 'GR':
+            context['category'] = 'German'
+        return context
