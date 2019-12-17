@@ -15,7 +15,7 @@
             <ul>
                 <li>{{ movie.title }}</li>
                 <li>{{ movie.description }}</li>
-                <li>
+                <li> Genre:
                     {% if movie.category == 'R' %}
                         <a href="#">Romance</a>
                     {% elif movie.category == 'A' %}
@@ -26,23 +26,14 @@
                         <a href="#">Drama</a>
                     {% endif %}
                 </li>
-                <li><a href="#">Gary Oldman</a>, <a href="#">Asa Butterfield</a></li>
-                <li>{{ movie.views_count }} Views</li>
+                <li>Cast: {{ movie.cast }}</li>
+                <li>Views: {{ movie.views_count }}</li>
             </ul>
         </section>
         <section class="links">
-            <h3>Links</h3>
-            <ul class="dlinks">
-                <li><a>Download</a></li>
-                <li><a href="#">Link1</a></li>
-                <li><a href="#">Link2</a></li>
-                <li><a href="#">Link3</a></li>
-            </ul>
             <ul class="wlinks">
-                <li><a>Watch</a></li>
-                <li><a href="#">Link1</a></li>
-                <li><a href="#">Link2</a></li>
-                <li><a href="#">Link3</a></li>
+                <li><a href="{{ movie.movie_link }}">Watch</a></li>
+                <li><a href="{{ movie.movie_link }}">Download</a></li>
             </ul>
         </section>
         <section class="related">
