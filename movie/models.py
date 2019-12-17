@@ -19,6 +19,7 @@ STATUS_CHOICES = (
 LINK_CHOICES = (
     ('W', 'WATCH LINK'),
     ('D', 'DOWNLOAD LINK'),
+    ('T', 'TRAILER LINK'),
 )
 
 

@@ -1,68 +1,72 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main class="content">
-    <div class="single">
-        <section class="trailer">
-            <h3>Trailer</h3>
-            <div class="trailer_frame">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/x73-573aWfs" frameborder="0"
-                        allowfullscreen></iframe>
-            </div>
-        </section>
-        <section class="movie">
-            <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
-            <ul>
-                <li>{{ movie.title }}</li>
-                <li>{{ movie.description }}</li>
-                <li> Genre:
-                    {% if movie.category == 'R' %}
-                        <a href="#">Romance</a>
-                    {% elif movie.category == 'A' %}
-                        <a href="#">Action</a>
-                    {% elif movie.category == 'C' %}
-                        <a href="#">Comedy</a>
-                    {% elif movie.category == 'D' %}
-                        <a href="#">Drama</a>
-                    {% endif %}
-                </li>
-                <li>Cast: {{ movie.cast }}</li>
-                <li>Views: {{ movie.views_count }}</li>
-            </ul>
-        </section>
-        <section class="links">
-            <ul class="wlinks">
-                <li><a href="{{ movie.movie_link }}">Watch</a></li>
-                <li><a href="{{ movie.movie_link }}">Download</a></li>
-            </ul>
-        </section>
-        <section class="related">
-            <h3>Related movies</h3>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/2.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">John Wick</span></a>
-            </div>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/3.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">Spider Man Homecoming</span></a>
-            </div>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/4.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">Beauty and Beast</span></a>
-            </div>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/5.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">Pirates of the Caribbean: Dead Men Tell No Tales</span></a>
-            </div>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/6.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">Fifty Shades Darker</span></a>
-            </div>
-            <div class="relatemovie">
-                <a href="#"><img src="{% static 'images/7.jpg' %}" alt="image"></a>
-                <a href="#"><span class="relatedname">Transformers</span></a>
-            </div>
-        </section>
-    </div>
-</main>
+    <main class="content">
+        <div class="single">
+            <section class="trailer">
+                <h3>Trailer</h3>
+                <div class="trailer_frame">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ embedded_id }}"></iframe>
+                </div>
+            </section>
+            <section class="movie">
+                <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                <ul>
+                    <li>{{ movie.title }}</li>
+                    <li>{{ movie.description }}</li>
+                    <li> Genre:
+                        {% if movie.category == 'R' %}
+                            <a href="#">Romance</a>
+                        {% elif movie.category == 'A' %}
+                            <a href="#">Action</a>
+                        {% elif movie.category == 'C' %}
+                            <a href="#">Comedy</a>
+                        {% elif movie.category == 'D' %}
+                            <a href="#">Drama</a>
+                        {% endif %}
+                    </li>
+                    <li>Cast: {{ movie.cast }}</li>
+                    <li>Views: {{ movie.views_count }}</li>
+                </ul>
+            </section>
+            <section class="links">
+                <ul class="wlinks">
+                    {% for link in links %}
+                        {% if link.link_type == 'W' %}
+                            <li><a href="{{ link.link }}" target="_blank">Watch link {{ forloop.counter }}</a></li>
+                        {% elif link.link_type == 'D' %}
+                            <li><a href="{{ link.link }}" target="_blank">Download link {{ forloop.counter }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="related">
+                <h3>Related movies</h3>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/2.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">John Wick</span></a>
+                </div>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/3.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">Spider Man Homecoming</span></a>
+                </div>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/4.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">Beauty and Beast</span></a>
+                </div>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/5.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">Pirates of the Caribbean: Dead Men Tell No Tales</span></a>
+                </div>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/6.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">Fifty Shades Darker</span></a>
+                </div>
+                <div class="relatemovie">
+                    <a href="#"><img src="{% static 'images/7.jpg' %}" alt="image"></a>
+                    <a href="#"><span class="relatedname">Transformers</span></a>
+                </div>
+            </section>
+        </div>
+    </main>
 {% endblock content %}
