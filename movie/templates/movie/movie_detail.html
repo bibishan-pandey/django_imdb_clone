@@ -3,12 +3,6 @@
 {% block content %}
     <main class="content">
         <div class="single">
-            <section class="trailer">
-                <h3>Trailer</h3>
-                <div class="trailer_frame">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ embedded_id }}"></iframe>
-                </div>
-            </section>
             <section class="movie">
                 <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
                 <ul>
@@ -29,16 +23,25 @@
                     <li>Views: {{ movie.views_count }}</li>
                 </ul>
             </section>
-            <section class="links">
-                <ul class="wlinks">
-                    {% for link in links %}
-                        {% if link.link_type == 'W' %}
-                            <li><a href="{{ link.link }}" target="_blank">Watch link {{ forloop.counter }}</a></li>
-                        {% elif link.link_type == 'D' %}
-                            <li><a href="{{ link.link }}" target="_blank">Download link {{ forloop.counter }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+            {% if links %}
+                <section class="links">
+                    <ul class="wlinks">
+                        {% for link in links %}
+                            {% if link.link_type == 'W' %}
+                                <li><a href="{{ link.link }}" target="_blank">Watch link {{ forloop.counter }}</a></li>
+                            {% elif link.link_type == 'D' %}
+                                <li><a href="{{ link.link }}" target="_blank">Download link {{ forloop.counter }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endif %}
+            <section class="trailer">
+                <h3>Trailer</h3>
+                <div class="trailer_frame">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ embedded_id }}"></iframe>
+                </div>
             </section>
             <section class="related">
                 <h3>Related movies</h3>
