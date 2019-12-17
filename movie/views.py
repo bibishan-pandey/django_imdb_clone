@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 
 from .models import Movie, MovieLink
-import json
+from django.db.models import Q
 
 
 class MovieList(ListView):
@@ -96,3 +96,21 @@ class LanguageCategory(ListView):
         elif self.category == 'GR':
             context['category'] = 'German'
         return context
+
+
+class MovieSearch(ListView):
+    model = Movie
+    template_name = 'movie/movie_list.html'
+    context_object_name = 'movies'
+    paginate_by = 5
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            object_list = Movie.objects.filter(
+                Q(title__icontains=query) |
+                Q(cast__icontains=query)
+            )
+        else:
+            object_list = self.model.objects.none()
+        return object_list

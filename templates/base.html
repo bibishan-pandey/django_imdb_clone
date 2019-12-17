@@ -41,18 +41,18 @@
                     </ul>
                 </li>
                 <li class="mobsearch">
-                    <form class="mobform">
+                    <form class="mobform" method="GET" action="{% url 'search' %}">
                         <label>
-                            <input type="text" name="s" class="mobsearchfield" placeholder="Search...">
+                            <input type="text" name="query" value="{{ request.GET.q }}" class="mobsearchfield" placeholder="Search...">
                         </label>
                         <input type="submit" value="" class="mobsearchsubmit">
                     </form>
                 </li>
             </ul>
         </nav>
-        <form class="search">
+        <form class="search" method="GET" action="{% url 'search' %}">
             <label>
-                <input type="text" name="s" class="searchfield" placeholder="Search...">
+                <input type="text" name="query" value="{{ request.GET.q }}" class="searchfield" placeholder="Search...">
             </label>
             <input type="submit" value="" class="searchsubmit">
         </form>

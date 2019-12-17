@@ -8,4 +8,5 @@ urlpatterns = [
     path(r'^(?P<int:pk>\d+)/', views.MovieDetail.as_view(), name='detail'),
     path(r'^genre category/(?P<category>\D+)/', views.GenreCategory.as_view(), name='genre category'),
     path(r'^language category/(?P<category>\D+)/', views.LanguageCategory.as_view(), name='language category'),
+    path(r'^search/', views.MovieSearch.as_view(), name='search'),
 ]
