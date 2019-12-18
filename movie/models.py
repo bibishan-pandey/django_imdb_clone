@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-
+from django.utils import timezone
 
 CATEGORY_CHOICES = (
     ('A', 'ACTION'),
@@ -36,6 +36,7 @@ class Movie(models.Model):
     views_count = models.BigIntegerField(default=0)
 
     slug = models.SlugField(blank=True, null=True)
+    created = models.DateTimeField(default=timezone.now())
     # tags
 
     def save(self, *args, **kwargs):
