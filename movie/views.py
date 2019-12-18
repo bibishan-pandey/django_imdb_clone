@@ -25,8 +25,10 @@ class MovieDetail(DetailView):
         context = {
             'movie': super(MovieDetail, self).get_object(),
             'links': links,
-            'embedded_id': embedded_id
+            'embedded_id': embedded_id,
+            'related_movies': Movie.objects.filter(category=self.get_object().category)#.order_by['created'][:6]
         }
+        print(context['related_movies'])
         context['movie'].views_count += 1  # increments the view count every time a movie object is opened
         context['movie'].save()
         return context
