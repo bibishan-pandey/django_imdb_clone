@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Swiper -->
+    <div class="homeslider">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for movie in slider_movies %}
+                    <div class="swiper-slide">
+                        <img src="{{ movie.banner.url }}" alt="{{ movie.title }}">
+                        <div class="caption">
+                            <div class="captioninside">
+                                <h3>{{ movie.title }}</h3>
+                                <p>{{ movie.description }}</p>
+                                <a href="#" class="playbutton">Play</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <main class="content">
+        <section class="panel">
+            <h2>Recently Added</h2>
+            <div class="recentslider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for movie in recently_added %}
+                            <div class="swiper-slide">
+                                <a href="{% url 'detail' movie.slug %}">
+                                    <img width="180px" height="250px" src="{{ movie.image.url }}"
+                                         alt="{{ movie.title }}">
+                                    <h3 class="hometitle">{{ movie.title }}</h3>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="nextdirection recent-next"><img src="{% static 'images/right-arrow.svg' %}" alt="Right">
+                    </div>
+                    <div class="leftdirection recent-prev"><img src="{% static 'images/left-arrow.svg' %}" alt="Left">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Most Watched</h2>
+            <div class="recentslider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for movie in most_watched %}
+                            <div class="swiper-slide">
+                                <a href="{% url 'detail' movie.slug %}">
+                                    <img width="180px" height="250px" src="{{ movie.image.url }}"
+                                         alt="{{ movie.title }}">
+                                    <h3 class="hometitle">{{ movie.title }}</h3>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="nextdirection recent-next"><img src="{% static 'images/right-arrow.svg' %}" alt="Right">
+                    </div>
+                    <div class="leftdirection recent-prev"><img src="{% static 'images/left-arrow.svg' %}" alt="Left">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Top Rated</h2>
+            <div class="recentslider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for movie in top_rated %}
+                            <div class="swiper-slide">
+                                <a href="{% url 'detail' movie.slug %}">
+                                    <img width="180px" height="250px" src="{{ movie.image.url }}"
+                                         alt="{{ movie.title }}">
+                                    <h3 class="hometitle">{{ movie.title }}</h3>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="nextdirection recent-next"><img src="{% static 'images/right-arrow.svg' %}" alt="Right">
+                    </div>
+                    <div class="leftdirection recent-prev"><img src="{% static 'images/left-arrow.svg' %}" alt="Left">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

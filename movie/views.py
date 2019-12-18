@@ -5,6 +5,19 @@ from .models import Movie, MovieLink
 from django.db.models import Q
 
 
+class MovieHome(ListView):
+    model = Movie
+    template_name = 'movie/movie_home.html'
+    context_object_name = 'movies'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(MovieHome, self).get_context_data(**kwargs)
+        context['top_rated'] = Movie.objects.filter(status='TR')
+        context['recently_added'] = Movie.objects.filter(status='RA')
+        context['most_watched'] = Movie.objects.filter(status='MW')
+        return context
+
+
 class MovieList(ListView):
     model = Movie
     template_name = 'movie/movie_list.html'
@@ -28,7 +41,6 @@ class MovieDetail(DetailView):
             'embedded_id': embedded_id,
             'related_movies': Movie.objects.filter(category=self.get_object().category)#.order_by['created'][:6]
         }
-        print(context['related_movies'])
         context['movie'].views_count += 1  # increments the view count every time a movie object is opened
         context['movie'].save()
         return context

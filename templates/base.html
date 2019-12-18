@@ -69,28 +69,6 @@
         </form>
         <div class="toggle"><img src="{% static 'images/menu.svg' %}" alt="Menu"></div>
     </header>
-    <!-- Swiper -->
-    <div class="homeslider">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                {% for movie in slider_movies %}
-                    <div class="swiper-slide">
-                        <img src="{{ movie.banner.url }}" alt="{{ movie.title }}">
-                        <div class="caption">
-                            <div class="captioninside">
-                                <h3>{{ movie.title }}</h3>
-                                <p>{{ movie.description }}</p>
-                                <a href="#" class="playbutton">Play</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
-
     {% block content %}
     {% endblock content %}
     <!-- Swiper JS -->
