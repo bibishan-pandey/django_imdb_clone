@@ -75,12 +75,12 @@
             <div class="swiper-wrapper">
                 {% for movie in slider_movies %}
                     <div class="swiper-slide">
-                        <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                        <img src="{{ movie.banner.url }}" alt="{{ movie.title }}">
                         <div class="caption">
                             <div class="captioninside">
                                 <h3>{{ movie.title }}</h3>
                                 <p>{{ movie.description }}</p>
-                                <a href="{% url 'detail' movie.slug %}" class="playbutton">View</a>
+                                <a href="#" class="playbutton">Play</a>
                             </div>
                         </div>
                     </div>
